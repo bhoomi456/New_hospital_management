@@ -9,6 +9,9 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.new
   end
 
+  def edit
+  end
+
   def create
     @doctor = Doctor.new(doctor_params)
     if @doctor.save
@@ -16,9 +19,9 @@ class DoctorsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
 
-  def show
+    def show
+    end
   end
 
   private
