@@ -1,5 +1,5 @@
 class DoctorsController < ApplicationController
-  before_action :set_doctor, only: [:show]
+  before_action :set_doctor, only: [:show, :edit, :update]
 
   def index
     @doctors = Doctor.all
@@ -19,8 +19,16 @@ class DoctorsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
 
-    def show
+  def show
+  end
+
+  def update
+    if @doctor.update(doctor_params)
+      redirect_to doctors_path, notice: "Doctor Updated successfully"
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
