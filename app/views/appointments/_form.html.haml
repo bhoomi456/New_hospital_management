@@ -1,0 +1,27 @@
+= form_with model: appointment do |form|
+  - if appointment.errors.any?
+    %ul
+      - appointment.errors.full_messages.each do |message|
+        %li= message
+
+  %div 
+    = form.label :reason
+    = form.text_field :reason
+  
+ %div
+  = form.label :doctor_id
+  = form.collection_select :doctor_id,
+                           Doctor.all,
+                           :id,
+                           :name,
+                           prompt: "Select Doctor"
+
+  %div
+    = form.label :patient_id
+    = form.collection_select :patient_id,
+                             Patient.all,
+                             :id,
+                             :name,
+                             prompt: "Select Patient"
+  %div
+    = form.submit
