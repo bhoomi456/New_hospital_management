@@ -13,4 +13,12 @@
     = form.text_field :specialization
 
   %div
+  = form.label :hospital_id, "Hospital"
+  = form.collection_select :hospital_id,
+                           Hospital.all,
+                           :id,
+                           :name,
+                           prompt: "Select Hospital"
+
+  %div
     = form.submit
