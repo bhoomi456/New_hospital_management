@@ -1,19 +1,19 @@
-= form_with model: doctor do |form|
-  - if doctor.errors.any?
+= form_with model: patient do |form|
+  - if patient.errors.any?
     %ul
-      - doctor.each.full_messages.each do |message|
-        %ls = message
+      - patient.errors.full_messages.each do |message|
+        %li= message
 
-  %div 
-    = form.label :Name
-    = form.text_field :name
-  
   %div
-    = form.label :Age
+    = form.label :name
+    = form.text_field :name
+
+  %div
+    = form.label :age
     = form.number_field :age
 
   %div
-    = form.lable :Gender
+    = form.label :gender
     = form.select :gender, ["Male", "Female", "Other"]
 
   %div
