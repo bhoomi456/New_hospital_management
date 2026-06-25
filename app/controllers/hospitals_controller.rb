@@ -1,5 +1,5 @@
-class HospitalController < ApplicationController
+class HospitalsController < ApplicationController
   def index
-    @hospital = Hospital.all
+    @hospitals = Hospital.all
   end
 end
