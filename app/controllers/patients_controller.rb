@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :set_patient, only: [:show, :edit, :update]
+  before_action :set_patient, only: [:show, :edit, :update, :destroy]
   
   def index
     @patients = Patient.all
@@ -30,6 +30,12 @@ class PatientsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @patient.destroy
+
+    redirect_to patients_path, notice: "Patient deleted successfully"
   end
 
   
