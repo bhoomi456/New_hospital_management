@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :set_patient, only: [:show]
+  before_action :set_patient, only: [:show, :edit, :update]
   
   def index
     @patients = Patient.all
@@ -20,6 +20,18 @@ class PatientsController < ApplicationController
   
   def show
   end
+
+  def edit
+  end
+
+  def update
+    if @patient.update(patient_params)
+      redirect_to patients_path, notice: "Patient Updated successfully"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   
   private
   def patient_params
