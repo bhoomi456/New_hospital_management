@@ -17,7 +17,7 @@
     - @profiles.each do |profile|
       %tr
         %td= profile.consultation_fee
-        %td= profile.Experience
+        %td= profile.experience
         %td= profile.doctor.name
         %td= link_to "Show", profile_path(profile)
         %td= link_to "Edit", edit_profile_path(profile)
