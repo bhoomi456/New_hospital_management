@@ -1,0 +1,15 @@
+%h1 Patient Details
+
+%p 
+  %strong Name:
+  = @patient.name
+
+%p 
+  %strong Age
+  = @patient.age
+%p 
+  %strong Gender
+  = @patient.gender
+
+= link_to "Edit", edit_patient_path(@patient)
+= link_to "Back", patients_path

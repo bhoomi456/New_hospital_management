@@ -1,10 +1,12 @@
 class PatientsController < ApplicationController
+  before_action :set_patient, only: [:show]
+  
   def index
     @patients = Patient.all
   end
 
   def new
-    @doctor = Doctor.new
+    @patient = Patient.new
   end
 
   def create
@@ -16,8 +18,15 @@ class PatientsController < ApplicationController
     end
   end
   
+  def show
+  end
+  
   private
   def patient_params
     params.require(:patient).permit(:name, :age, :gender)
+  end
+
+  def set_patient
+    @patient = Patient.find(params[:id])
   end
 end
