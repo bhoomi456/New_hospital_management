@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :patients
   resources :hospitals
   resources :appointments
+  resources :profiles
 end
