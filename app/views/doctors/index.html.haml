@@ -12,6 +12,7 @@
         %tr
           %th name
           %th specialization
+          %th hospital
           %th{ colspan: "3"} Actions
     
       %tbody
@@ -19,6 +20,7 @@
           %tr
             %td= doctor.name
             %td= doctor.specialization
+            %td= doctor.hospital.name
             %td= link_to "Show", doctor_path(doctor)
             %td= link_to "Edit", edit_doctor_path(doctor)
             %td= link_to "Delete",doctor_path(doctor),data: {turbo_method: :delete,turbo_confirm: "Are you sure?"}
