@@ -1,4 +1,5 @@
 class HospitalsController < ApplicationController
+  before_action :set_hospital, only: [:show]
   def index
     @hospitals = Hospital.all
   end
@@ -16,9 +17,16 @@ class HospitalsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def hospital_params
     params.require(:hospital).permit(:name)
+  end
+
+  def set_hospital
+    @hospital = Hospital.find(params[:id])
   end
 end
