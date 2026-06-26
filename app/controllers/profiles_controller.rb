@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy]
   def index
     @profiles = Profile.all
   end
@@ -18,6 +18,23 @@ class ProfilesController < ApplicationController
   end
 
   def show
+  end
+
+  def edit 
+  end
+
+  def update
+    if @profile.update(profile_params)
+      redirect_to profiles_path, notice: "Profile Updated successfully"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @profile.destroy
+
+    redirect_to profiles_path, notice: "Profile Deleted Successfully"
   end
   
   private
