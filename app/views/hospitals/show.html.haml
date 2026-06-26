@@ -1,0 +1,8 @@
+%h1 Hospital Details
+
+%p
+  %strong Name:
+  = @hospital.name
+
+= link_to "Edit", edit_hospital_path(@hospital)
+= link_to "Back", hospitals_path
