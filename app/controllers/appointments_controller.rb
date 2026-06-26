@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:show]
+  before_action :set_appointment, only: [:show, :edit, :update]
 
   def index
     @appointments = Appointment.all
@@ -20,6 +20,17 @@ class AppointmentsController < ApplicationController
 
   def show 
   end
+
+  def edit 
+  end
+
+  def update
+    if @appointment.update(appointment_params)
+      redirect_to appointments_path, notice: "Appointment Updated successfully"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end    
   
   private
 
