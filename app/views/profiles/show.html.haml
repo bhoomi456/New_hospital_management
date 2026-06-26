@@ -1,0 +1,15 @@
+%h1 Profile Details
+
+%p 
+  %strong Doctor:
+  = @profile.doctor.name
+
+%p 
+  %strong Experience
+  = @profile.experience
+%p 
+  %strong Consultation fee
+  = @profile.consultation_fee
+
+= link_to "Edit", edit_profile_path(@profile)
+= link_to "Back", profiles_path

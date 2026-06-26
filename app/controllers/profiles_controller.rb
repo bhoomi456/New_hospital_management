@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_action :set_profile, only: [:show]
   def index
     @profiles = Profile.all
   end
@@ -15,10 +16,17 @@ class ProfilesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def show
+  end
   
   private
 
   def profile_params
     params.require(:profile).permit(:consultation_fee, :doctor_id, :experience)
+  end
+
+  def set_profile
+    @profile = Profile.find(params[:id])
   end
 end
