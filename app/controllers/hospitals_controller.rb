@@ -1,5 +1,5 @@
 class HospitalsController < ApplicationController
-  before_action :set_hospital, only: [:show, :edit, :update]
+  before_action :set_hospital, only: [:show, :edit, :update, :destroy]
   def index
     @hospitals = Hospital.all
   end
@@ -29,7 +29,13 @@ class HospitalsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
-  end    
+  end  
+  
+  def destroy
+    @hospital.destroy
+
+    redirect_to hospitals_path, notice: "Hosptial Deleted Successfully"
+  end
 
   private
 
