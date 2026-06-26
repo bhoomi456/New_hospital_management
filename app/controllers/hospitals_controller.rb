@@ -1,5 +1,5 @@
 class HospitalsController < ApplicationController
-  before_action :set_hospital, only: [:show]
+  before_action :set_hospital, only: [:show, :edit, :update]
   def index
     @hospitals = Hospital.all
   end
@@ -19,6 +19,17 @@ class HospitalsController < ApplicationController
 
   def show
   end
+
+  def edit 
+  end
+
+  def update
+    if @hospital.update(hospital_params)
+      redirect_to hospitals_path, notice: "Hospital Updated successfully"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end    
 
   private
 
