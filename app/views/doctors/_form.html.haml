@@ -4,21 +4,39 @@
       - doctor.errors.full_messages.each do |message|
         %li= message
 
-  %div 
+  %div
     = form.label :name
     = form.text_field :name
-  
+
   %div
     = form.label :specialization
     = form.text_field :specialization
 
   %div
-  = form.label :hospital_id, "Hospital"
-  = form.collection_select :hospital_id,
-                           Hospital.all,
-                           :id,
-                           :name,
-                           prompt: "Select Hospital"
+    = form.label :hospital_id, "Hospital"
+    = form.collection_select :hospital_id,
+                             Hospital.all,
+                             :id,
+                             :name,
+                             prompt: "Select Hospital"
+
+  %hr
+
+  %h3 Doctor Profile
+
+  = form.fields_for :doctor_profile do |profile|
+
+    %div
+      = profile.label :experience
+      = profile.number_field :experience
+
+    %div
+      = profile.label :qualification
+      = profile.text_field :qualification
+
+    %div
+      = profile.label :clinic_address
+      = profile.text_area :clinic_address
 
   %div
     = form.submit

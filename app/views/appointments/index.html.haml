@@ -1,19 +1,26 @@
 - if notice
-  %p{style: "color: red;"}
-  = notice
+  %p{ style: "color: green;" }
+    = notice
 
 %h1 Appointments
+
 = link_to "New Appointment", new_appointment_path
 
-%table{border: "1"}
+%br
+%br
+
+%table{ border: "1", cellpadding: "10" }
   %thead
     %tr
       %th Doctor
       %th Patient
       %th Reason
       %th Appointment Date
-
-      %th{ colspan: "3"} Actions
+      %th Status
+      %th Show
+      %th Edit
+      %th Delete
+      %th Cancel
 
   %tbody
     - @appointments.each do |appointment|
@@ -22,6 +29,16 @@
         %td= appointment.patient.name
         %td= appointment.reason
         %td= appointment.appointment_date
+        %td= appointment.status
+
         %td= link_to "Show", appointment_path(appointment)
+
         %td= link_to "Edit", edit_appointment_path(appointment)
-        %td= link_to "Delete", appointment_path(appointment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+
+        %td= link_to "Delete", appointment_path(appointment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
+
+        %td
+          - if appointment.status != "cancelled"
+            = button_to "Cancel", cancel_appointment_path(appointment), method: :patch, data: { turbo_confirm: "Are you sure you want to cancel this appointment?" }
+          - else
+            Cancelled

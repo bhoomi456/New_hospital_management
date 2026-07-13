@@ -7,6 +7,7 @@ class DoctorsController < ApplicationController
 
   def new
     @doctor = Doctor.new
+    @doctor.build_profile
   end
 
   def edit
@@ -22,6 +23,7 @@ class DoctorsController < ApplicationController
   end
 
   def show
+    @appointment = @doctor.appointments.find(params[:id])
   end
 
   def destroy
@@ -38,9 +40,17 @@ class DoctorsController < ApplicationController
     end
   end
 
+   def search
+    @doctors = Doctor.where("name LIKE ?", "%#{params[:q]}%")
+
+    render json: @doctors
+  end
+
+
   private
   def doctor_params
-    params.require(:doctor).permit(:name, :specialization, :hospital_id)
+    params.require(:doctor).permit(:name, :specialization, :hospital_id, profile_attributes: [:experience,
+      :consultation_fee])
   end
 
   def set_doctor

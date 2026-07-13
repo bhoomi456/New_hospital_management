@@ -1,4 +1,69 @@
 Rails.application.routes.draw do
+  root "hospitals#index"
+
+  get "/home", to: redirect("/")
+
+  # scope module: :admin do
+  #   resources :hospitals
+  # end
+
+  # namespace :admin do
+  #   resources :hospitals
+  # end
+
+
+  resources :appointments do
+    member do
+      patch :cancel
+    end
+
+    collection do 
+      get :upcoming
+    end
+  end
+
+  # concern :searchable do
+  #   collection do
+  #     get :search
+  #   end
+  # end
+
+  # resources :doctors, concerns: :searchable
+  # resources :patients, concerns: :searchable
+
+  resources :doctors do
+    resources :appointments
+  end
+
+  resources :patients do
+    collection do
+      get :export
+    end
+  end
+
+  # namespace :api do
+  #   namespace :v1 do
+  #     resources :patients do
+  #       resources :appointments, shallow: true do
+  #         member do
+  #           patch :cancel
+  #         end
+
+  #         collection do
+  #           get :upcoming
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
+
+  # # resources :patients do
+  # #   resources :appointments, shallow: true
+  # # end
+  resources :hospitals
+  resources :doctors
+  resources :appointments
+  resources :patients
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -12,9 +77,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :doctors
-  resources :patients
-  resources :hospitals
-  resources :appointments
-  resources :profiles
 end

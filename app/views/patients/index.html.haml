@@ -1,7 +1,7 @@
 - if notice
   %p{style: "color: red;"}
   = notice
-
+  
 %h1 Patients
 = link_to "New Patient", new_patient_path
 
@@ -11,6 +11,7 @@
       %th Name
       %th Age
       %th Gender
+      %th Phone
       %th{ colspan: "3"} Actions
 
   %tbody
@@ -19,6 +20,9 @@
         %td= patient.name
         %td= patient.age 
         %td= patient.gender
+        %td= patient.phone
         %td= link_to "Show", patient_path(patient)
         %td= link_to "Edit", edit_patient_path(patient)
         %td= link_to "Delete", patient_path(patient), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+
+= render PatientsStatisticsComponent.new(patients: @patients)
