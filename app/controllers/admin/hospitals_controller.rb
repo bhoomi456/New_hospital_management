@@ -1,12 +1,8 @@
-class HospitalsController < ApplicationController
+class Admin::HospitalsController < ApplicationController
   before_action :set_hospital, only: [:show, :edit, :update, :destroy]
+  skip_before_action :require_login, only: [:index]
   def index
     @hospitals = Hospital.all
-    respond_to do |format|
-      format.html
-      format.json { render json: @hospitals }
-      # format.xml  { render xml: @hospitals }
-    end
   end
 
   def new
@@ -16,14 +12,13 @@ class HospitalsController < ApplicationController
   def create
     @hospital = Hospital.create(hospital_params)
     if @hospital.save
-      redirect_to hospitals_path, notice: "Hospital Added Successfully", status: 301
+      redirect_to hospitals_path, notice: "Hospital Added Successfully"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def show
-    cookies.signed[:last_hospital] = @hospital.id
   end
 
   def edit 

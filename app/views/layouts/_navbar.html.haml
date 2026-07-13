@@ -1,17 +1,12 @@
-%nav{style: "background-color: #9ecced; padding: 15px; text-align: center;"}  
-  %div{style: "font-size: 24px; font-weight: bold;"}
-    Hospital Management
-
+%nav{style: "background-color: #9ecced; padding: 15px; text-align: center;"} 
+  %div 
+    %header
+      %h1 Hospital
+  
   %div{style: "flex: 1; text-align: center;"}
 
     = link_to "Doctors", doctors_path
     |
-    = link_to "Patients", patients_path
-    |
-    = link_to "Hospitals", hospitals_path
-    |
-    = link_to "Appointments", appointments_path
-    |
-    = link_to "Profiles", profiles_path
-  
+    = link_to "Hospitals", hospitals_path  
+      
 %hr
