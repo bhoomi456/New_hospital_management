@@ -1,8 +1,7 @@
-%h1 Hospital Details
+= turbo_frame_tag "doctor_details" do
+  %h2= @hospital.name
 
-%p
-  %strong Name:
-  = @hospital.name
+  %h3 Doctors
 
-= link_to "Edit", edit_hospital_path(@hospital)
-= link_to "Back", hospitals_path
+  - @hospital.doctors.each do |doctor|
+    %p= doctor.name

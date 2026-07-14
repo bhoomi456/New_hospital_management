@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  root "hospitals#index"
+  root "dashboard#index"
 
   get "/home", to: redirect("/")
+
+  get "dashboard", to: "dashboard#index"
+  get "dashboard/hospitals", to: "dashboard#hospitals"
+  get "dashboard/doctors", to: "dashboard#doctors"
+  get "dashboard/patients", to: "dashboard#patients"
+  get "dashboard/appointments", to: "dashboard#appointments"
+  get "dashboard/profiles", to: "dashboard#profiles"
 
   # scope module: :admin do
   #   resources :hospitals
@@ -31,9 +38,9 @@ Rails.application.routes.draw do
   # resources :doctors, concerns: :searchable
   # resources :patients, concerns: :searchable
 
-  resources :doctors do
-    resources :appointments
-  end
+  # resources :doctors do
+  #   resources :appointments
+  # end
 
   resources :patients do
     collection do
@@ -60,7 +67,7 @@ Rails.application.routes.draw do
   # # resources :patients do
   # #   resources :appointments, shallow: true
   # # end
-  resources :hospitals
+  resources :hospitals 
   resources :doctors
   resources :appointments
   resources :patients

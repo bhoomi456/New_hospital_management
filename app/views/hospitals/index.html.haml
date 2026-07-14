@@ -15,6 +15,10 @@
     - @hospitals.each do |hospital|
       %tr
         %td= hospital.name
-        %td= link_to "Show", hospital_path(hospital)
+        %td= link_to "Show", hospital_path(hospital), data: { turbo_frame: "doctor_details" }
         %td= link_to "Edit", edit_hospital_path(hospital)
         %td= link_to "Delete", hospital_path(hospital), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+
+= turbo_frame_tag "doctor_details" do
+  %h3 Doctor Details
+  %p Select a hospital to view doctors.

@@ -14,8 +14,7 @@
 
   %body
     = render "layouts/navbar"
-    - flash.each do |type, message|
-      %p{ style: "color: red;" }
-        = message
+    
 
     = yield
+
