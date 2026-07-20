@@ -1,0 +1,5 @@
+%tr{ id: dom_id(hospital) }
+  %td= hospital.name
+  %td= link_to "Show", hospital_path(hospital), data: { turbo_frame: "doctor_details" }
+  %td= link_to "Edit", edit_hospital_path(hospital),data: { turbo_frame: "modal" }
+  %td= link_to "Delete",hospital_path(hospital),data: {turbo_method: :delete,turbo_confirm: "Are you sure?"}

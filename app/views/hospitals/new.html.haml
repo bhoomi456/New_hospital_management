@@ -1,3 +1,8 @@
-%h1 New Hospital
-= render "form", hospital: @hospital
-= link_to "Back", hospitals_path
+= turbo_frame_tag "modal" do
+  .modal
+    #hospital_form
+      %h1 New Hospital
+
+      = render "form", hospital: @hospital
+
+      = link_to "Back", hospitals_path

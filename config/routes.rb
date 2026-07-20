@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  root "dashboard#index"
+  root "dashboards#index"
 
   get "/home", to: redirect("/")
 
-  get "dashboard", to: "dashboard#index"
-  get "dashboard/hospitals", to: "dashboard#hospitals"
-  get "dashboard/doctors", to: "dashboard#doctors"
-  get "dashboard/patients", to: "dashboard#patients"
-  get "dashboard/appointments", to: "dashboard#appointments"
-  get "dashboard/profiles", to: "dashboard#profiles"
+  get "dashboard", to: "dashboards#index"
+  get "dashboard/hospitals", to: "dashboards#hospitals"
+  get "dashboard/doctors", to: "dashboards#doctors"
+  get "dashboard/patients", to: "dashboards#patients"
+  get "dashboard/appointments", to: "dashboards#appointments"
+  get "dashboard/profiles", to: "dashboards#profiles"
 
   # scope module: :admin do
   #   resources :hospitals

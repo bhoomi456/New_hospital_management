@@ -1,0 +1,12 @@
+%h1 Dashboard
+
+= link_to "Hospitals", dashboard_hospitals_path ,data: { turbo_frame: "dashboard_content" }
+|
+= link_to "Doctors", dashboard_doctors_path, data: { turbo_frame: "dashboard_content" }
+|
+= link_to "Patients", dashboard_patients_path, data: { turbo_frame: "dashboard_content" }
+
+%hr
+
+= turbo_frame_tag "dashboard_content", data: { turbo_action: "advance" } do
+  %p Select a tab

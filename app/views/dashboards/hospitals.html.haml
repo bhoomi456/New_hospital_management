@@ -1,0 +1,5 @@
+= turbo_frame_tag "dashboard_content" do
+  %h2 Hospitals
+
+  - @hospitals.each do |hospital|
+    %p= hospital.name

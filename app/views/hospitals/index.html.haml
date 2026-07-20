@@ -3,7 +3,9 @@
   = notice
 
 %h1 Hospitals
-= link_to "New Hospital", new_hospital_path
+#notice
+
+= link_to "New Hospital", new_hospital_path, data: { turbo_frame: "modal" }
 
 %table{border: "1"}
   %thead
@@ -11,14 +13,12 @@
       %th Name
       %th{ colspan: "3"} Actions
 
-  %tbody
+  %tbody#hospitals
     - @hospitals.each do |hospital|
-      %tr
-        %td= hospital.name
-        %td= link_to "Show", hospital_path(hospital), data: { turbo_frame: "doctor_details" }
-        %td= link_to "Edit", edit_hospital_path(hospital)
-        %td= link_to "Delete", hospital_path(hospital), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      = render hospital
 
 = turbo_frame_tag "doctor_details" do
   %h3 Doctor Details
   %p Select a hospital to view doctors.
+
+= turbo_frame_tag "modal"
