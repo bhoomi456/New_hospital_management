@@ -3,6 +3,7 @@ class PatientsController < ApplicationController
   
   def index
     @patients = Patient.all
+    @patients_count = Patient.count
   end
 
   def new
@@ -12,6 +13,7 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.new(patient_params)
     if @patient.save
+      @patients_count = Patient.count
       respond_to do |format|
         format.turbo_stream
       end
@@ -38,6 +40,7 @@ class PatientsController < ApplicationController
 
   def destroy
     if @patient.destroy
+      @patients_count = Patient.count
       respond_to do |format|
         format.turbo_stream
       end

@@ -3,7 +3,7 @@
   %h1 Patients
 
   = render "notification"
-  
+
   = link_to "New Patient", new_patient_path, data: { turbo_frame: "modal" }
 
   %table{border: "1"}
@@ -19,4 +19,10 @@
       - @patients.each do |patient|
         = render patient
 
+  %div
+    %p
+      %strong{ style: "color: red; font-weight: bold;"} Patients Count:
+      %span#patient_count{ style: "color: blue; font-weight: bold;" }
+        = @patients_count
+        
 = turbo_frame_tag "modal"
