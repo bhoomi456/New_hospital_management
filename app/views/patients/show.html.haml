@@ -1,15 +1,22 @@
-%h1 Patient Details
+= turbo_frame_tag "modal" do
+  %div{style: "position:fixed; inset:0; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center;"}
+    %div{style: "background:white; padding:24px; border-radius:8px; min-width:320px;"}
+      %h1 Patient Details
 
-%p 
-  %strong Name:
-  = @patient.name
+      %p 
+        %strong Name:
+        = @patient.name
 
-%p 
-  %strong Age
-  = @patient.age
-%p 
-  %strong Gender
-  = @patient.gender
+      %p 
+        %strong Age
+        = @patient.age
+      %p 
+        %strong Gender
+        = @patient.gender
 
-= link_to "Edit", edit_patient_path(@patient)
-= link_to "Back", patients_path
+      %p 
+        %strong Phone
+        = @patient.phone
+
+      = link_to "Edit", edit_patient_path(@patient),data: { turbo_frame: "modal" }
+      = link_to "Back", patients_path
