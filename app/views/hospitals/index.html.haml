@@ -1,9 +1,9 @@
--# - if notice
--#   %p{style: "color: red;"}
--#   = notice
 = turbo_frame_tag "tab_content" do
 
+
   %h1 Hospitals
+  = turbo_frame_tag "notice"
+
 
   = link_to "New Hospital", new_hospital_path, data: { turbo_frame: "modal" }
 
@@ -17,8 +17,8 @@
       - @hospitals.each do |hospital|
         = render hospital
 
-  = turbo_frame_tag "doctor_details" do
-    %h3 Doctor Details
-    %p Select a hospital to view doctors.
+= turbo_frame_tag "doctor_details" do
+  %h3 Doctor Details
+  %p Select a hospital to view doctors.
 
-  = turbo_frame_tag "modal"
+= turbo_frame_tag "modal"
