@@ -1,5 +1,4 @@
 class PatientsController < ApplicationController
-  require "csv"
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -13,10 +12,10 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.new(patient_params)
     if @patient.save
-      redirect_to patients_path, notice: "Patient Added Successfully"
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
-      flash.now[:alert] = "Could not add Patient: #{@patient.errors.full_messages.join(', ')}"
-
       render :new, status: :unprocessable_entity
     end
   end
