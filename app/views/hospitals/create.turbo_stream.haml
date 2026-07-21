@@ -2,8 +2,14 @@
   partial: "hospitals/hospital",
   locals: { hospital: @hospital }
 
+= turbo_stream.replace "hospital_form" do
+  %p{ style: "color: green; font-weight: bold;" }
+    Hospital created successfully
+
 = turbo_stream.update "modal", ""
 
+= turbo_stream.update "hospital_count" do
+  = @hospitals_count
 
 = turbo_stream.update "notice" do
   %p{ style: "color: red; font-weight: bold;" }
