@@ -28,9 +28,11 @@ class PatientsController < ApplicationController
 
   def update
     if @patient.update(patient_params)
-      redirect_to patients_path, notice: "Patient Updated successfully"
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity 
     end
   end
 

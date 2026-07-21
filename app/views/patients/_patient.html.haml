@@ -4,5 +4,5 @@
   %td= patient.gender
   %td= patient.phone
   %td= link_to "Show", patient_path(patient)
-  %td= link_to "Edit", edit_patient_path(patient)
+  %td= link_to "Edit", edit_patient_path(patient),data: { turbo_frame: "modal" }
   %td= link_to "Delete", patient_path(patient), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
