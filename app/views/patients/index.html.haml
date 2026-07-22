@@ -1,28 +1,28 @@
-- if notice
-  %p{style: "color: red;"}
-  = notice
-  
-%h1 Patients
-= link_to "New Patient", new_patient_path
+= turbo_frame_tag "tab_content" do
 
-%table{border: "1"}
-  %thead
-    %tr
-      %th Name
-      %th Age
-      %th Gender
-      %th Phone
-      %th{ colspan: "3"} Actions
+  %h1 Patients
 
-  %tbody
-    - @patients.each do |patient|
+  = render "notification"
+
+  = link_to "New Patient", new_patient_path, data: { turbo_frame: "modal" }
+
+  %table{border: "1"}
+    %thead
       %tr
-        %td= patient.name
-        %td= patient.age 
-        %td= patient.gender
-        %td= patient.phone
-        %td= link_to "Show", patient_path(patient)
-        %td= link_to "Edit", edit_patient_path(patient)
-        %td= link_to "Delete", patient_path(patient), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+        %th Name
+        %th Age
+        %th Gender
+        %th Phone
+        %th{ colspan: "3"} Actions
 
-= render PatientsStatisticsComponent.new(patients: @patients)
+    %tbody#patients
+      - @patients.each do |patient|
+        = render patient
+
+  %div
+    %p
+      %strong{ style: "color: red; font-weight: bold;"} Patients Count:
+      %span#patient_count{ style: "color: blue; font-weight: bold;" }
+        = @patients_count
+        
+= turbo_frame_tag "modal"

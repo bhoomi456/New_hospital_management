@@ -1,0 +1,13 @@
+= turbo_stream.prepend "patients",
+  partial: "patients/patient",
+  locals: { patient: @patient }
+
+= turbo_stream.update "patient_count" do
+  = @patients_count
+
+
+= turbo_stream.update "modal", ""
+
+= turbo_stream.update "notification" do 
+  %p{ style: "color: red; font-weight: bold;" }
+    Patient created successfully 

@@ -1,9 +1,9 @@
 class PatientsController < ApplicationController
-  require "csv"
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
   
   def index
     @patients = Patient.all
+    @patients_count = Patient.count
   end
 
   def new
@@ -13,10 +13,11 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.new(patient_params)
     if @patient.save
-      redirect_to patients_path, notice: "Patient Added Successfully"
+      @patients_count = Patient.count
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
-      flash.now[:alert] = "Could not add Patient: #{@patient.errors.full_messages.join(', ')}"
-
       render :new, status: :unprocessable_entity
     end
   end
@@ -29,16 +30,23 @@ class PatientsController < ApplicationController
 
   def update
     if @patient.update(patient_params)
-      redirect_to patients_path, notice: "Patient Updated successfully"
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity 
     end
   end
 
   def destroy
-    @patient.destroy
-
-    redirect_to patients_path, notice: "Patient deleted successfully"
+    if @patient.destroy
+      @patients_count = Patient.count
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to patients_path, notice: "Patient not found"
+    end
   end
 
   def search

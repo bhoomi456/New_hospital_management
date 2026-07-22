@@ -1,0 +1,10 @@
+= turbo_stream.replace dom_id(@patient),
+    partial: "patients/patient",
+    locals: { patient: @patient }
+
+= turbo_stream.update "notification" do
+  %p{ style: "color: green; font-weight: bold;" }
+    Patient updated successfully
+  
+= turbo_stream.update "modal" do
+  = ""
