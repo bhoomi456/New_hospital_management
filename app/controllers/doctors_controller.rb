@@ -36,7 +36,9 @@ class DoctorsController < ApplicationController
 
   def update
     if @doctor.update(doctor_params)
-      redirect_to doctors_path, notice: "Doctor Updated successfully"
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
       render :edit, status: :unprocessable_entity
     end
