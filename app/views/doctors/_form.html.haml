@@ -8,6 +8,7 @@
   = f.association :hospital, prompt: "Select Hospital"
 
   = f.simple_fields_for :profile do |profile|
+    = profile.input :id, as: :hidden
     = profile.input :experience
     = profile.input :consultation_fee
 

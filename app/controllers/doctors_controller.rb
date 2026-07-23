@@ -3,6 +3,7 @@ class DoctorsController < ApplicationController
 
   def index
     @doctors = Doctor.all
+    @doctors_count = Doctor.count
   end
 
   def new
@@ -11,11 +12,13 @@ class DoctorsController < ApplicationController
   end
 
   def edit
+    @doctor.build_profile unless @doctor.profile
   end
 
   def create
     @doctor = Doctor.new(doctor_params)
     if @doctor.save
+      @doctors_count = Doctor.count
       respond_to do |format|
         format.turbo_stream
       end
@@ -29,6 +32,7 @@ class DoctorsController < ApplicationController
 
   def destroy
     if @doctor.destroy
+      @doctors_count = Doctor.count
       respond_to do |format|
         format.turbo_stream
       end

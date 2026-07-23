@@ -20,5 +20,10 @@
         %tbody#doctors
           - @doctors.each do |doctor|
             = render doctor
+      %div
+        %p
+          %strong{ style: "color: red; font-weight: bold;"} Doctors Count:
+          %span#patient_count{ style: "color: blue; font-weight: bold;" }
+            = @doctors_count
 
 = turbo_frame_tag "modal"
