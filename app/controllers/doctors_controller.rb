@@ -25,7 +25,6 @@ class DoctorsController < ApplicationController
   end
 
   def show
-    @appointment = @doctor.appointments.find(params[:id])
   end
 
   def destroy
@@ -57,7 +56,7 @@ class DoctorsController < ApplicationController
 
   private
   def doctor_params
-    params.require(:doctor).permit(:name, :specialization, :hospital_id, profile_attributes: [:experience,
+    params.require(:doctor).permit(:name, :specialization, :hospital_id, profile_attributes: [:id, :experience,
       :consultation_fee])
   end
 

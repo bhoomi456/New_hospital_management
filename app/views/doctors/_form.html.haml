@@ -7,8 +7,8 @@
 
   = f.association :hospital, prompt: "Select Hospital"
 
-  = f.simple_fields_for :doctor_profile do |profile|
+  = f.simple_fields_for :profile do |profile|
     = profile.input :experience
-    = profile.input :qualification
+    = profile.input :consultation_fee
 
   = f.button :submit
