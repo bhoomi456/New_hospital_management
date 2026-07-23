@@ -29,9 +29,13 @@ class DoctorsController < ApplicationController
   end
 
   def destroy
-    @doctor.destroy
-
-    redirect_to doctors_path, notice: "Doctor deleted successfully"
+    if @doctor.destroy
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to patients_path, notice: "Patient not found"
+    end
   end
 
   def update
