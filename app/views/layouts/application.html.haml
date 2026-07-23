@@ -15,6 +15,6 @@
   %body
     = render "layouts/navbar"
     
-
-    = yield
+    = turbo_frame_tag "tab_content",  data: { turbo_action: "advance" } do
+      = yield
 
