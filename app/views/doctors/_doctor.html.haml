@@ -1,0 +1,6 @@
+%tr{ id: dom_id(doctor) }
+  %td= doctor.name
+  %td= doctor.specialization
+  %td= doctor.hospital.name
+  %td= link_to "Show", doctor_path(doctor)
+  %td= link_to "Edit", edit_doctor_path(doctor)

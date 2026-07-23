@@ -1,26 +1,24 @@
-%div{style: "display: flex; justify-content: center;"}
-  %div
-    - if notice
-      %p{style: "color: red;" }
-        = notice
-    
-    %h Doctors
-    = link_to "New Doctor", new_doctor_path
+= turbo_frame_tag "tab_content" do
 
-    
-    %table{border: "1"}
-      %thead
-        %tr
-          %th name
-          %th specialization
-          %th hospital
-          %th{ colspan: "2"} Actions
-    
-      %tbody
-        - @doctors.each do |doctor|
+  %div{style: "display: flex; justify-content: center;"}
+    %div
+
+      %h Doctors
+      = render "notification"
+
+      = link_to "New Doctor", new_doctor_path, data: { turbo_frame: "modal" }
+
+
+      %table{border: "1"}
+        %thead
           %tr
-            %td= doctor.name
-            %td= doctor.specialization
-            %td= doctor.hospital.name
-            %td= link_to "Show", doctor_path(doctor)
-            %td= link_to "Edit", edit_doctor_path(doctor)
+            %th name
+            %th specialization
+            %th hospital
+            %th{ colspan: "2"} Actions
+
+        %tbody#doctors
+          - @doctors.each do |doctor|
+            = render doctor
+
+= turbo_frame_tag "modal"
