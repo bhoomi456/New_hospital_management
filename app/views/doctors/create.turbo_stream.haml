@@ -1,0 +1,14 @@
+= turbo_stream.prepend "doctors",
+  partial: "doctors/doctor",
+  locals: { doctor: @doctor }
+
+= turbo_stream.replace "doctor_form" do
+  %p{ style: "color: green; font-weight: bold;" }
+    Doctor created successfully
+
+= turbo_stream.update "modal", ""
+
+= turbo_stream.update "notification" do
+  %p{ style: "color: red; font-weight: bold;" }
+    Doctor created successfully
+

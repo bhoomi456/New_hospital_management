@@ -1,42 +1,15 @@
-= form_with model: doctor do |form|
-  - if doctor.errors.any?
-    %ul
-      - doctor.errors.full_messages.each do |message|
-        %li= message
+= simple_form_for @doctor do |f|
 
-  %div
-    = form.label :name
-    = form.text_field :name
+  = f.error_notification
 
-  %div
-    = form.label :specialization
-    = form.text_field :specialization
+  = f.input :name
+  = f.input :specialization
 
-  %div
-    = form.label :hospital_id, "Hospital"
-    = form.collection_select :hospital_id,
-                             Hospital.all,
-                             :id,
-                             :name,
-                             prompt: "Select Hospital"
+  = f.association :hospital, prompt: "Select Hospital"
 
-  %hr
+  = f.simple_fields_for :profile do |profile|
+    = profile.input :id, as: :hidden
+    = profile.input :experience
+    = profile.input :consultation_fee
 
-  %h3 Doctor Profile
-
-  = form.fields_for :doctor_profile do |profile|
-
-    %div
-      = profile.label :experience
-      = profile.number_field :experience
-
-    %div
-      = profile.label :qualification
-      = profile.text_field :qualification
-
-    %div
-      = profile.label :clinic_address
-      = profile.text_area :clinic_address
-
-  %div
-    = form.submit
+  = f.button :submit

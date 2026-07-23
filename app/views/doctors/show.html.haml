@@ -1,12 +1,27 @@
-%h1 Doctor Details
+= turbo_frame_tag "modal" do
+  %div{style: "position:fixed; inset:0; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center;"}
+    %div{style: "background:white; padding:24px; border-radius:8px; min-width:320px;"}
+      %h1 Doctor Details
 
-%p
-  %strong Name:
-  = @doctor.name
+      %p
+        %strong Name:
+        = @doctor.name
 
-%p
-  %strong Specialization:
-  = @doctor.specialization
+      %p
+        %strong Specialization:
+        = @doctor.specialization
 
-= link_to "Edit", edit_doctor_path(@doctor)
-= link_to "Back", doctors_path
+      %p
+        %strong Hospital:
+        = @doctor.hospital.name
+
+      %p
+        %strong Experience:
+        = @doctor.profile.experience
+
+      %p
+        %strong Consultation_fee:
+        = @doctor.profile.consultation_fee
+
+      = link_to "Edit", edit_doctor_path(@doctor),data: { turbo_frame: "modal" }
+      = link_to "Back", doctors_path

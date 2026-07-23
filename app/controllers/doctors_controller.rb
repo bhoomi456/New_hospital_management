@@ -3,6 +3,7 @@ class DoctorsController < ApplicationController
 
   def index
     @doctors = Doctor.all
+    @doctors_count = Doctor.count
   end
 
   def new
@@ -11,30 +12,40 @@ class DoctorsController < ApplicationController
   end
 
   def edit
+    @doctor.build_profile unless @doctor.profile
   end
 
   def create
     @doctor = Doctor.new(doctor_params)
     if @doctor.save
-      redirect_to doctors_path, notice: "Doctor Added successfully"
+      @doctors_count = Doctor.count
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def show
-    @appointment = @doctor.appointments.find(params[:id])
   end
 
   def destroy
-    @doctor.destroy
-
-    redirect_to doctors_path, notice: "Doctor deleted successfully"
+    if @doctor.destroy
+      @doctors_count = Doctor.count
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to patients_path, notice: "Patient not found"
+    end
   end
 
   def update
     if @doctor.update(doctor_params)
-      redirect_to doctors_path, notice: "Doctor Updated successfully"
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -49,7 +60,7 @@ class DoctorsController < ApplicationController
 
   private
   def doctor_params
-    params.require(:doctor).permit(:name, :specialization, :hospital_id, profile_attributes: [:experience,
+    params.require(:doctor).permit(:name, :specialization, :hospital_id, profile_attributes: [:id, :experience,
       :consultation_fee])
   end
 
