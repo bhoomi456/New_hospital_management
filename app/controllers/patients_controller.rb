@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
-  before_action :set_patient, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_patient, only: [ :show, :edit, :update, :destroy ]
+
   def index
     @patients = Patient.all
     @patients_count = Patient.count
@@ -21,7 +21,7 @@ class PatientsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
+
   def show
   end
 
@@ -34,7 +34,7 @@ class PatientsController < ApplicationController
         format.turbo_stream
       end
     else
-      render :edit, status: :unprocessable_entity 
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -58,20 +58,20 @@ class PatientsController < ApplicationController
   def export
     @patients = Patient.all
     csv_data = CSV.generate(headers: true) do |csv|
-      csv << ["name","age","gender","phone"]
+      csv << [ "name", "age", "gender", "phone" ]
       @patients.each do |patient|
         csv << [
           patient.name,
           patient.age,
           patient.gender,
-          patient.phone,
+          patient.phone
         ]
       end
     end
-    send_data csv_data,filename: "patients.csv",type: "text/csv"
+    send_data csv_data, filename: "patients.csv", type: "text/csv"
   end
 
-  
+
   private
   def patient_params
     params.require(:patient).permit(:name, :age, :gender, :phone)

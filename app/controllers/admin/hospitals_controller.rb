@@ -1,12 +1,12 @@
 class Admin::HospitalsController < ApplicationController
-  before_action :set_hospital, only: [:show, :edit, :update, :destroy]
-  skip_before_action :require_login, only: [:index]
+  before_action :set_hospital, only: [ :show, :edit, :update, :destroy ]
+  skip_before_action :require_login, only: [ :index ]
   def index
     @hospitals = Hospital.all
   end
 
   def new
-    @hospital = Hospital.new 
+    @hospital = Hospital.new
   end
 
   def create
@@ -21,7 +21,7 @@ class Admin::HospitalsController < ApplicationController
   def show
   end
 
-  def edit 
+  def edit
   end
 
   def update
@@ -30,8 +30,8 @@ class Admin::HospitalsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
-  end  
-  
+  end
+
   def destroy
     @hospital.destroy
 
