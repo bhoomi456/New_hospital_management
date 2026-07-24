@@ -29,6 +29,7 @@ class HospitalsController < ApplicationController
 
   def update
     if @hospital.update(hospital_params)
+      HospitalMailer.hospital_updated(@hospital).deliver_now
       respond_to do |format|
         format.turbo_stream
       end
@@ -51,7 +52,7 @@ class HospitalsController < ApplicationController
   private
 
   def hospital_params
-    params.require(:hospital).permit(:name)
+    params.require(:hospital).permit(:name, :admin_email, :address)
   end
 
   def set_hospital
