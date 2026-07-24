@@ -16,6 +16,8 @@
     %tbody#hospitals
       - @hospitals.each do |hospital|
         = render hospital
+        
+  = paginate @hospitals
 
 = turbo_frame_tag "doctor_details" do
   %h3 Doctor Details
