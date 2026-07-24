@@ -9,5 +9,8 @@
 #   end
 
 1000.times do
-  Hospital.create!(name: "#{Faker::Company.name} Hospital")
+  Hospital.create!(name: "#{Faker::Company.name} Hospital",
+    admin_email: Faker::Internet.unique.email,
+    address: Faker::Address.full_address
+  )
 end
