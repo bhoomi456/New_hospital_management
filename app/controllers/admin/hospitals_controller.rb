@@ -1,6 +1,6 @@
 class Admin::HospitalsController < ApplicationController
   before_action :set_hospital, only: [ :show, :edit, :update, :destroy ]
-  skip_before_action :require_login, only: [ :index ]
+  # skip_before_action :require_login, only: [ :index ]
   def index
     @hospitals = Hospital.all
   end
