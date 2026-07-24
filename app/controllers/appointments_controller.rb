@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
-  around_action :measure_create_time, only: [:create]
-  before_action :set_appointment, only: [:show, :edit, :update,:destroy]
+  around_action :measure_create_time, only: [ :create ]
+  before_action :set_appointment, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @appointments = Appointment.all
@@ -35,16 +35,16 @@ class AppointmentsController < ApplicationController
 
       render :new, status: :unprocessable_entity
     end
-  end 
+  end
 
-  def show 
-    respond_to do |format| 
-      format.html 
+  def show
+    respond_to do |format|
+      format.html
       format.json { render json: @appointment }
     end
   end
 
-  def edit 
+  def edit
   end
 
   def update
@@ -53,8 +53,8 @@ class AppointmentsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
-  end 
-  
+  end
+
   def destroy
     @appointment.destroy
 
@@ -73,7 +73,7 @@ class AppointmentsController < ApplicationController
 
     render json: @appointments
   end
-  
+
   private
 
   def appointment_params
@@ -84,7 +84,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
   end
 
-  def measure_create_time 
+  def measure_create_time
     start_time = Time.current
     yield
     duration = (Time.current - start_time) * 1000

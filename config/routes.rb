@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       patch :cancel
     end
 
-    collection do 
+    collection do
       get :upcoming
     end
   end
@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   # # resources :patients do
   # #   resources :appointments, shallow: true
   # # end
-  resources :hospitals 
+  resources :hospitals
   resources :doctors
   resources :appointments
   resources :patients
@@ -83,5 +83,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-
 end

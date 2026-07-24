@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [ :show, :edit, :update, :destroy ]
   def index
     @profiles = Profile.all
   end
@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   def show
   end
 
-  def edit 
+  def edit
   end
 
   def update
@@ -36,7 +36,7 @@ class ProfilesController < ApplicationController
 
     redirect_to profiles_path, notice: "Profile Deleted Successfully"
   end
-  
+
   private
 
   def profile_params

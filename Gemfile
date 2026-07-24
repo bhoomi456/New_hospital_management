@@ -17,7 +17,7 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 gem "haml-rails"
-gem 'simple_form'
+gem "simple_form"
 gem "view_component"
 gem "csv"
 gem "faker"

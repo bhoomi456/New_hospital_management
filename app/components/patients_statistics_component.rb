@@ -1,10 +1,10 @@
-class PatientsStatisticsComponent < ViewComponent::Base 
+class PatientsStatisticsComponent < ViewComponent::Base
   def initialize(patients:)
     @patients = patients
   end
 
   def total_patients
-    @patients.count 
+    @patients.count
   end
 
   def total_male_patients

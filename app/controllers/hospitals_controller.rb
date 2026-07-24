@@ -1,11 +1,11 @@
 class HospitalsController < ApplicationController
-  before_action :set_hospital, only: [:show, :edit, :update, :destroy]
+  before_action :set_hospital, only: [ :show, :edit, :update, :destroy ]
   def index
     @hospitals = Hospital.page(params[:page]).per(20)
   end
 
   def new
-    @hospital = Hospital.new 
+    @hospital = Hospital.new
   end
 
   def create
@@ -24,7 +24,7 @@ class HospitalsController < ApplicationController
     # cookies.signed[:last_hospital] = @hospital.id
   end
 
-  def edit 
+  def edit
   end
 
   def update
@@ -34,10 +34,10 @@ class HospitalsController < ApplicationController
         format.turbo_stream
       end
     else
-      render :edit, status: :unprocessable_entity 
+      render :edit, status: :unprocessable_entity
     end
-  end  
-  
+  end
+
   def destroy
     if @hospital.destroy
       @hospitals_count = Hospital.count
