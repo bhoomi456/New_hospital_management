@@ -8,11 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 TOTAL = 3000000
-BATCH_SIZE = 300
+BATCH_SIZE = 30000
 imported_count = 0
 
 hospitals = []
-
+start_time = Time.now
 
 TOTAL.times do
   hospitals << Hospital.new(
@@ -22,11 +22,15 @@ TOTAL.times do
   )
 
   if hospitals.size == BATCH_SIZE
+    batch_start = Time.now
+
     Hospital.import(hospitals)
+    batch_end = Time.now
     imported_count += hospitals.size
-    puts "✅ Imported #{imported_count} hospitals..."
+    puts "Imported #{imported_count} hospitals | Batch Time: #{batch_end - batch_start} sec"
     hospitals.clear
   end
 end
 
 Hospital.import(hospitals) if hospitals.any?
+puts "Total Time: #{Time.now - start_time} sec"
