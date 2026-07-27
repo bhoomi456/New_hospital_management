@@ -9,19 +9,22 @@
 #   end
 TOTAL = 3000000
 BATCH_SIZE = 300
+imported_count = 0
 
 hospitals = []
 
 
 TOTAL.times do
   hospitals << Hospital.new(
-    name: "#{Faker::City.name} Hospital",
+    name: "#{Faker::Address.city} Hospital",
     admin_email: Faker::Internet.unique.email,
     address: Faker::Address.full_address
   )
 
   if hospitals.size == BATCH_SIZE
     Hospital.import(hospitals)
+    imported_count += hospitals.size
+    puts "✅ Imported #{imported_count} hospitals..."
     hospitals.clear
   end
 end
