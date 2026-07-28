@@ -1,5 +1,9 @@
 = turbo_frame_tag "tab_content" do
+  %h1 Hospitals
 
+  = form_with url: hospitals_path, method: :get do |f|
+    = f.text_field  :search, placeholder: "Search by name"
+    = f.submit "Search"
 
   %h1 Hospitals
   = turbo_frame_tag "notice"

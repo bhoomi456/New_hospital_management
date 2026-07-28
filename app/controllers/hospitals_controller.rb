@@ -1,7 +1,11 @@
 class HospitalsController < ApplicationController
   before_action :set_hospital, only: [ :show, :edit, :update, :destroy ]
   def index
-    @hospitals = Hospital.page(params[:page]).per(20)
+    @hospitals = Hospital.all
+    if params[:search].present?
+      @hospitals = Hospital.where("name ILIKE ?", "%#{params[:search]}%")
+    end
+    @hospitals = @hospitals.page(params[:page]).per(20)
   end
 
   def new
